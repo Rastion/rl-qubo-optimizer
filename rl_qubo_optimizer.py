@@ -109,7 +109,8 @@ class RLLocalSearchOptimizer(BaseOptimizer):
 
         if initial_solution is None:
             x = np.random.randint(0, 2, size=n)
-
+        else:
+            x = np.array(initial_solution)
         # Initialize the QUBO matrix as an n x n NumPy array
         QUBO_matrix = np.zeros((n, n))
 

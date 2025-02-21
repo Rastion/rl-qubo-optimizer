@@ -98,15 +98,7 @@ class RLLocalSearchOptimizer(BaseOptimizer):
 
     def optimize(self, problem, initial_solution=None, **kwargs):
 
-        if initial_solution is None:
-            # Attempt to use the problem's random_solution
-            try:
-                initial_solution = problem.random_solution()
-            except NotImplementedError:
-                raise ValueError(
-                    "No initial_solution provided and problem.random_solution() "
-                    "is not implemented!"
-                )
+        
 
         # Extract QUBO dictionary from problem
         QUBO_dict = problem.get_qubo()
@@ -114,6 +106,9 @@ class RLLocalSearchOptimizer(BaseOptimizer):
         # Find the matrix size
         max_index = max(max(i, j) for i, j in QUBO_dict.keys())  # Determine size from dictionary keys
         n = max_index + 1  # Since indices are 0-based
+
+        if initial_solution is None:
+            x = np.random.randint(0, 2, size=n)
 
         # Initialize the QUBO matrix as an n x n NumPy array
         QUBO_matrix = np.zeros((n, n))
@@ -126,7 +121,7 @@ class RLLocalSearchOptimizer(BaseOptimizer):
                 
         # Run the RL local search.
         best_solution, best_cost, progress = rl_local_search(
-            initial_solution,
+            x,
             QUBO_matrix,
             0,
             time_limit=self.time_limit,

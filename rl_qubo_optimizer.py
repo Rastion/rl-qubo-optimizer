@@ -117,8 +117,7 @@ class RLLocalSearchOptimizer(BaseOptimizer):
         # Populate the matrix from the dictionary
         for (i, j), value in QUBO_dict.items():
             QUBO_matrix[i, j] = value
-            if i != j:
-                QUBO_matrix[j, i] = value  # Ensure symmetry if needed
+            
                 
         # Run the RL local search.
         best_solution, best_cost, progress = rl_local_search(

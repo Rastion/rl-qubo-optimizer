@@ -2,7 +2,7 @@
     "entry_point": "rl_qubo_optimizer:RLLocalSearchOptimizer",
     "default_params": {
       "time_limit": 5,
-      "step_size": 5,
+      "temperature": 1000,
       "verbose": false
     },
     "optimizer_type": "Heuristic QUBO optimizer based on RL",

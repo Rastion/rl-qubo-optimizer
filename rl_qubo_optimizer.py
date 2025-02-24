@@ -86,8 +86,6 @@ class RLLocalSearchOptimizer(BaseOptimizer):
         QUBO_matrix = np.zeros((n, n))
         for (i, j), value in QUBO_dict.items():
             QUBO_matrix[i, j] = value
-            if i != j:
-                QUBO_matrix[j, i] = value
                 
         best_solution, best_cost, _ = rl_local_search(
             x, QUBO_matrix, 0, self.time_limit, self.step_size, self.verbose

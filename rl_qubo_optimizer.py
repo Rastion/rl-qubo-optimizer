@@ -13,7 +13,7 @@ def calculate_percentile(input_values, q):
 
 def rescaled_rank_rewards(current_value, previous_values, q=1):
     Cq = calculate_percentile(previous_values, q)
-    print(f"Percentile cost: {Cq}")
+    #print(f"Percentile cost: {Cq}")
     if current_value < Cq:
         return -(q / 100)
     elif current_value > Cq:
@@ -47,7 +47,7 @@ def rl_local_search(bitstring, QUBO_matrix, const, time_limit, temperature=10, v
     best_state = state.clone()
     best_cost = torch.matmul(state, torch.matmul(QUBO_tensor, state)) + const_tensor
     progress_costs = [best_cost.item()]
-    print("Initial cost :", best_cost.item())
+    #print("Initial cost :", best_cost.item())
     cut_values = [best_cost.item()]
     P = 100
     num_bits = len(bitstring)

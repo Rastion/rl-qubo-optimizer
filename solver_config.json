@@ -5,12 +5,13 @@
       "temperature": 1000,
       "verbose": false
     },
-    "optimizer_type": "Heuristic QUBO optimizer based on RL",
+    "creator": "Rastion",
+    "type": "optimizer",
+    "optimizer_name": "Heuristic QUBO optimizer based on RL",
     "description": "Mix of a simulated annealing algorithm with a custom reward and update system.",
     "compatible_problems": [
       "QUBO"
     ],
-    
     "parameters": {
       "time_limit": {
         "type": "int",
